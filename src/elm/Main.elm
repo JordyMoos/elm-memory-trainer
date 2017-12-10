@@ -1,18 +1,20 @@
 module Main exposing (main)
 
 import Html exposing (Html, programWithFlags)
+import Data.Config as Config
+import Data.Question as Question
 
 
 type alias Model =
-    String
+    { questions : List Question.Question }
 
 
-init : () -> ( Model, Cmd Msg )
+init : Config.Config -> ( Model, Cmd Msg )
 init flags =
-    "" ! []
+    { questions = flags.questions } ! []
 
 
-main : Program () Model Msg
+main : Program Config.Config Model Msg
 main =
     programWithFlags
         { init = init
